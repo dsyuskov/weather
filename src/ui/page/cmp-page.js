@@ -6,17 +6,12 @@ class Page extends React.Component {
   constructor(props) {
     super(props)
     this.onChange = this.onChange.bind(this);
-    this.throttledOnChange = throttle(this.throttledOnChange.bind(this), 3000);
+    this.throttledOnChange = throttle(this.throttledOnChange.bind(this), 1000);
   }
-  
+
   state = {
     searchString: ''
   }
-
-  componentWillMount() {
-    console.log(this.props.getTemp('balashov'));
-  }
-  
 
   onChange = event => {
     this.throttledOnChange(event.target.value);
@@ -24,24 +19,44 @@ class Page extends React.Component {
   }
 
   throttledOnChange = value => {
-    this.props.getTemp(value);
-  }
-  
-  componentDidMount() {
-    
+    this.props.getWeather(value);
   }
 
-  render() {    
+  componentDidMount() {
+    console.log('start')
+    this.props.getWeather('Balashov');
+    this.props.getWeatherForecast('579460');
+  }
+
+  render() {
     const { searchString } = this.state;
-    const { city } = this.props;    
+    const { weather, forecast, isError, isRequest } = this.props;
     console.log(this.props);
-    console.log(city);
+    if (!weather.city) {
+      return (
+        <Search 
+          value={ searchString }
+          onChange={ this.onChange }
+        />
+      )
+    }
+    
     return (
       <div>
         <Search 
-          value={searchString}
+          value={ searchString }
           onChange={ this.onChange }
         />
+        {/* {isError ? 
+        <p>City not found</p> : 
+        <div>
+          <p>City { weather.city.name }</p> 
+          <p>Country { weather.city.country }</p> 
+          <p>Temp { weather.weather.temp}</p>
+          <p>Humidity { weather.weather.humidity}</p>
+          <p>Wind { weather.weather.wind.speed}</p>
+        </div>
+        } */}
       </div>
     )
   }

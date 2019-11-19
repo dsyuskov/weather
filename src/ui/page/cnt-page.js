@@ -1,16 +1,26 @@
 import { connect } from 'react-redux';
 import Page from './cmp-page';
-import { getTemp } from '../../actions/weather'
+import { getWeather } from '../../actions/weather'
+import { getWeatherForecast } from '../../actions/forecast'
 
-function mapStateToProps (state) { 
- 
+function mapStateToProps (state) {
+  const { weather, isRequest, isError } = state.weather;
+  const { forecast, isRequestForecast, isErrorForecast } = state.forecast;
   return { 
-    city: state.weather.collection,
+    isRequest,
+    weather,
+    isError,
+    forecast,
+    isRequestForecast,
+    isErrorForecast,
   }
 }
 
-const mapDispathToProps = {
-  getTemp
-}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getWeather: (url) => dispatch(getWeather(url)),
+    getWeatherForecast: (url) => dispatch(getWeatherForecast(url))
+  };
+};
 
-export default connect(mapStateToProps, mapDispathToProps)(Page);
+export default connect(mapStateToProps, mapDispatchToProps)(Page);
