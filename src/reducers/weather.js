@@ -1,9 +1,8 @@
-import { SEARCH_TEXT } from '../actions/actions'
+import { SEARCH_TEXT,  } from '../actions/weather';
+
 
 const initState = {
-  temp: '',
-  wind: '',
-  sity: ''
+  collections: ''
 }
 
 export default function(state = initState, action) {
@@ -11,9 +10,10 @@ export default function(state = initState, action) {
     case SEARCH_TEXT: {
       return {
         ...state,
-        sity: action.payload,
+        collections: action.payload,
       }
     }
+    default:
   }
   return state;
 }

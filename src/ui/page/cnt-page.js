@@ -1,15 +1,16 @@
 import { connect } from 'react-redux';
 import Page from './cmp-page';
-import { getWeater } from '../../actions/actions'
+import { getTemp } from '../../actions/weather'
 
-function mapStateToProps (state) {  
+function mapStateToProps (state) { 
+ 
   return { 
-    city: state.weather.city
+    city: state.weather.collection,
   }
 }
 
 const mapDispathToProps = {
-  getWeater
+  getTemp
 }
 
 export default connect(mapStateToProps, mapDispathToProps)(Page);
