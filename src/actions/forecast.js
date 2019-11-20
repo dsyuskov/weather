@@ -5,7 +5,7 @@ export const GET_WEATHER_FORECAST_FAILTURE = 'GET_WEATHER_FORECAST_FAILTURE';
 const PATH_BASE = 'http://api.openweathermap.org/data/2.5/';
 const FORECAST = 'forecast';
 const API_KEY = 'APPID=d5ecba2b149b9cdfb1fea656c735177d';
-const API_SYSTEM = 'units=metric';
+const UNITS = 'units=';
 const ID = 'id=';
 
 export const getWeatherForecastRequest = bool => {
@@ -29,11 +29,11 @@ export const getWeatherForecastFailture = bool => {
   }
 }
 
-export const getWeatherForecast = (city, ) => {
+export const getWeatherForecast = (city, units) => {
   return (dispatch) => {
     dispatch(getWeatherForecastRequest(true));
 
-    fetch(`${PATH_BASE}${FORECAST}?${API_KEY}&${API_SYSTEM}&${ID}${city}`)
+    fetch(`${PATH_BASE}${FORECAST}?${API_KEY}&${UNITS}${units}&${ID}${city}`)
       .then(response => {
         if (!response.ok) {
           throw Error(response.statusText)

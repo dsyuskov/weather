@@ -2,6 +2,8 @@ import React from 'react';
 import Search from '../search/cmp-search'
 import { throttle } from 'lodash';
 
+const COUNT_MILLISECONDS_TO_MINUT = 1000;
+
 class Page extends React.Component {
   constructor(props) {
     super(props)
@@ -24,8 +26,8 @@ class Page extends React.Component {
 
   componentDidMount() {
     console.log('start')
-    this.props.getWeather('Balashov');
-    this.props.getWeatherForecast('579460');
+    this.props.getWeather('Balashov', 'metric');
+    this.props.getWeatherForecast('579460', 'metric');
   }
 
   render() {
@@ -47,16 +49,20 @@ class Page extends React.Component {
           value={ searchString }
           onChange={ this.onChange }
         />
-        {/* {isError ? 
+        {isError ? 
         <p>City not found</p> : 
         <div>
           <p>City { weather.city.name }</p> 
           <p>Country { weather.city.country }</p> 
-          <p>Temp { weather.weather.temp}</p>
-          <p>Humidity { weather.weather.humidity}</p>
-          <p>Wind { weather.weather.wind.speed}</p>
+          <p>Temp { weather.weather.temp }</p>
+          <p>Humidity { weather.weather.humidity }</p>
+          <p>Wind { weather.weather.wind.speed }</p>
+          <p>dt { weather.dt }</p>
+          <p>now { new Date().getTime() }</p>
+          <p>Day { new Date(weather.dt * COUNT_MILLISECONDS_TO_MINUT).getFullYear() }</p>
+
         </div>
-        } */}
+        }
       </div>
     )
   }

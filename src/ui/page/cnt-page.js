@@ -18,8 +18,8 @@ function mapStateToProps (state) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getWeather: (url) => dispatch(getWeather(url)),
-    getWeatherForecast: (url) => dispatch(getWeatherForecast(url))
+    getWeather: (city, units) => dispatch(getWeather(city, units)),
+    getWeatherForecast: (city, units) => dispatch(getWeatherForecast(city, units))
   };
 };
 
