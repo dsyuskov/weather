@@ -1,0 +1,19 @@
+@import './variables.scss';
+@import './layot.scss';
+//@import './fonts.scss';
+@import './button.scss';
+@import './dropdown.scss';
+@import './search.scss';
+@import './control-panel.scss';
+@import './weather-day.scss';
+@import './weather-forecast.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: black;
+}
+

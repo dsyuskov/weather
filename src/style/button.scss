@@ -1,0 +1,21 @@
+.button {
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-family: 'Montserrat' sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffffff;
+  cursor: pointer;
+  background: rgba(180, 184, 187, 0.4);
+
+  &:hover{
+    opacity: 0.5;
+  }
+
+  &--selected {
+    background: rgba(76, 82, 85, 0.4);
+  }
+}

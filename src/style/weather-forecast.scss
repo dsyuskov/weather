@@ -1,0 +1,31 @@
+.weather-forecast {
+  display: flex;
+  justify-content: space-between;
+
+  &__day {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 5fr;
+    grid-template-areas:
+      "weekday weekday"
+      
+      "temp img";
+    width: 33%;
+  }
+
+  &__weekday {
+    grid-area: weekday;
+    font-size: 22px;
+    line-height: 27px;
+  }
+
+  &__temp {
+    grid-area: temp;
+    font-size: 80px;
+    line-height: 98px;
+  }
+
+  &__img {
+    grid-area: img;
+  }
+}

@@ -1,0 +1,25 @@
+
+.dropdown {
+  width: 71px;
+  height: 44px;
+  background: rgba(174, 181, 185, 0.5);
+  border: 0;
+  border-radius: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-transform: uppercase;
+  font-family: 'Montserrat' sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffffff;
+
+  &__item {
+    height: 44px;;
+    background: rgba(174, 181, 185, 0.5);
+    color: #ffffff;
+    text-transform: uppercase;
+    font-family: 'Montserrat' sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+  }
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="style.css" rel="stylesheet">
+  <title>Document</title>
+</head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <div class="control-panel">
+          <button class="button control-panel__update"></button>
+          <select class="dropdown control-panel__lang">
+            <option class="dropdown__item" value="en">en</option>
+            <option class="dropdown__item" value="ru">ru</option>
+            <option class="dropdown__item" value="by">by</option>
+          </select>
+          <button class="button control-panel__faringate">&deg F</button>
+          <button class="button button--selected control-panel__celsius">&deg C</button>
+        </div>
+        <div class="search">
+            <form class="search__form">
+              <input class="search__input" type="text">
+              <button class="button search__button">Search</button>
+            </form>
+          </div>
+      </header>
+      <main class="main">
+        <div class="weather-day">
+          <div class="weather-day__city">Minsk, Belarus</div>
+          <div class="weather-day__date-time">Mon 28 October 17:23</div>
+          <div class="weather-day__wrapper">
+            <div class="weather-day__temp">
+              <div class="weather-day__temp-value">10</div>
+              <div class="weather-day__temp-deg">&deg</div>
+            </div>
+            <div class="weather-day__img">
+              <img src="./images/02d.png">
+            </div>
+            <ul class="weather-day__more">
+              <li class="weather-day__more-item">overcast</li>
+              <li class="weather-day__more-item">feels</li>
+              <li class="weather-day__more-item">wind</li>
+              <li class="weather-day__more-item">humidity: 100%</li>
+            </ul>
+          </div>
+          <div class="weather-forecast">
+            <div class="weather-forecast__day">
+              <div class="weather-forecast__weekday">Tuesday</div>
+              <div class="weather-forecast__temp">7&deg</div>
+              <div class="weather-forecast__img">
+                  <img src="./images/02d.png">
+              </div>
+            </div>
+            <div class="weather-forecast__day">
+              <div class="weather-forecast__weekday">Wednesday</div>
+              <div class="weather-forecast__temp">6&deg</div>
+              <div class="weather-forecast__img">
+                  <img src="./images/02d.png">
+              </div>
+            </div>
+            <div class="weather-forecast__day">
+                <div class="weather-forecast__weekday">Thursday</div>
+                <div class="weather-forecast__temp">3&deg</div>
+                <div class="weather-forecast__img">
+                    <img src="./images/02d.png">
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="map">
+          <img src="images/map.png">
+        </div>
+      </main>
+    </div>
+  </body>
+</body>
+</html>

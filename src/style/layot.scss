@@ -1,0 +1,74 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 14fr 1fr;
+  grid-template-rows: 1fr 1fr 30fr;
+  grid-template-areas: 
+    ". . ."
+    ". header ."
+    ". main .";
+  @media (max-width: $small) {
+    //margin: 1em;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 10fr;
+    grid-template-areas: 
+      "header"
+      "main";
+    }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  grid-area: header;
+  @media (max-width: $small) {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+      "panel"
+      "search";
+    }
+ }
+
+.control-panel {
+  grid-area: panel;
+}
+
+.search {
+   grid-area: search;
+ }
+
+.main {
+  grid-area: main;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 2fr 23fr;
+  grid-template-areas: 
+  ". ."
+  "day ."
+  "day map";
+
+  @media (max-width: $large) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 8fr 7fr;
+    grid-template-areas: 
+      "."
+      "day"
+      "map";
+  }
+}
+
+.weather-day {
+  grid-area: day;
+}
+
+.map {
+  grid-area: map;
+  margin-left: auto;;
+  margin-right: 0;
+
+  @media (max-width: $large) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

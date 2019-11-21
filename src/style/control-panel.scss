@@ -1,0 +1,21 @@
+.control-panel {
+  display: flex;
+
+  &__update {
+    border: 0;
+    background: url('~../public/images/icon-update.svg');
+  }
+
+  &__lang {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  &__faringate {
+    border-radius: 5px 0 0 5px;
+  }
+
+  &__celsius {
+    border-radius: 0 5px 5px 0;
+  }
+}

@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import Page from './ui/page/cnt-page';
-import configureStore from './store/configureStore'
+import configureStore from './store/configureStore';
+import './style/main.scss';
 
 
 const store = configureStore()
