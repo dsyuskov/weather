@@ -1,6 +1,11 @@
 .weather-forecast {
   display: flex;
   justify-content: space-between;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: bold;
+  color: $font-color;
 
   &__day {
     display: grid;
@@ -8,7 +13,6 @@
     grid-template-rows: 1fr 5fr;
     grid-template-areas:
       "weekday weekday"
-      
       "temp img";
     width: 33%;
   }

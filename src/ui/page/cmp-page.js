@@ -1,5 +1,6 @@
 import React from 'react';
-import Search from '../search/cmp-search'
+import Search from '../search/cmp-search';
+import WeatherDay from '../weatherDay/cmp-weatherDay';
 import { throttle } from 'lodash';
 
 const COUNT_MILLISECONDS_TO_MINUT = 1000;
@@ -21,10 +22,9 @@ class Page extends React.Component {
     this.setState({ searchString: event.target.value});
   }
 
-  onClick(event) {
-    console.log('click');
-    console.log(event);
-    
+  onClick(searchString) {
+    console.log(searchString);
+    this.props.getWeather(searchString, 'metric');
   }
 
   throttledOnChange = value => {
@@ -40,15 +40,83 @@ class Page extends React.Component {
   render() {
     const { searchString } = this.state;
     const { weather,  isError, isRequest } = this.props;
-    //console.log(this.props);
+    console.log(this.props);
     if (!weather.city) {
       return (
-        <Search 
-          value={ searchString }
-          onClick={ this.onClick }
-        />
+        <div className="wrapper">
+          <header className="header">
+            <div className="control-panel">
+              <button className="button control-panel__update"></button>
+              <select className="dropdown control-panel__lang">
+                <option className="dropdown__item" value="en">en</option>
+                <option className="dropdown__item" value="ru">ru</option>
+                <option className="dropdown__item" value="by">by</option>
+              </select>
+              <button className="button control-panel__faringate">&deg; F</button>
+              <button className="button button--selected control-panel__celsius">&deg; C</button>
+            </div>
+              <Search 
+                value={ searchString }
+                onClick={ this.onClick }
+              />
+          </header>
+        </div>
       )
     }
+
+    return (
+      <div className="wrapper">
+        <header className="header">
+          <div className="control-panel">
+            <button className="button control-panel__update"></button>
+            <select className="dropdown control-panel__lang">
+              <option className="dropdown__item" value="en">en</option>
+              <option className="dropdown__item" value="ru">ru</option>
+              <option className="dropdown__item" value="by">by</option>
+            </select>
+            <button className="button control-panel__faringate">&deg; F</button>
+            <button className="button button--selected control-panel__celsius">&deg; C</button>
+          </div>
+            <Search 
+              value={ searchString }
+              onClick={ this.onClick }
+            />
+        </header>
+        <main className="main">
+          <div className="weather">
+            <WeatherDay 
+              weather={ weather }
+            />
+            <div className="weather-forecast">
+              <div className="weather-forecast__day">
+                <div className="weather-forecast__weekday">Tuesday</div>
+                <div className="weather-forecast__temp">7&deg;</div>
+                <div className="weather-forecast__img">
+                    <img src="./images/02d.png" />
+                </div>
+              </div>
+              <div className="weather-forecast__day">
+                <div className="weather-forecast__weekday">Wednesday</div>
+                <div className="weather-forecast__temp">6&deg;</div>
+                <div className="weather-forecast__img">
+                    <img src="./images/02d.png" />
+                </div>
+              </div>
+              <div className="weather-forecast__day">
+                <div className="weather-forecast__weekday">Thursday</div>
+                <div className="weather-forecast__temp">3&deg;</div>
+                <div className="weather-forecast__img">
+                    <img src="./images/02d.png" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="map">
+            <img src="images/map.png" />
+          </div>
+        </main>
+    </div>
+    )
     
     // return (
     //   <div>

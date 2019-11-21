@@ -46,29 +46,37 @@ export const getWeather = (city, units) => {
       })
       .then(response => response.json())
       .then(item => {
-        const data = {
-          id: item.id,
-          data: item.dt,
-          city: {
-            name: item.name,
-            country: item.sys.country,
-            coord:{
-              lat: item.coord.lat,
-              lon: item.coord.lon,
-            },
-          },
-          weather: {
-            temp: item.main.temp,
-            humidity: item.main.humidity,
-            wind: {
-              deg: item.wind.deg,
-              speed: item.wind.speed,
-            },
-          },
-        }
+        console.log(item);
         dispatch(getWeatherFailture(false))
-        dispatch(getWeatherSuccess(data))
+        dispatch(getWeatherSuccess(preapreWeather(item)))
       })
       .catch(() => dispatch(getWeatherFailture(true)))
       }
+}
+
+function preapreWeather(item) {
+  const result = {
+    id: item.id,
+    date: item.dt,
+    city: {
+      name: item.name,
+      country: item.sys.country,
+      coord:{
+        lat: item.coord.lat,
+        lon: item.coord.lon,
+      },
+    },
+    weather: {
+      temp: Math.round(item.main.temp),
+      feels: Math.round(13.12 + 0.6215*Math.round(item.main.temp) - 11.37*Math.pow(item.wind.speed, 0.16) + 0.3965*Math.round(item.main.temp)*Math.pow(item.wind.speed, 0.16)),
+      humidity: item.main.humidity,
+      icon: item.weather[0].icon,
+      desc: item.weather[0].description,
+      wind: {
+        deg: item.wind.deg,
+        speed: item.wind.speed,
+      },
+    },
+  }
+  return result;
 }

@@ -14,7 +14,6 @@ class Search extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div className="search">
         <form className="search__form">
@@ -30,11 +29,12 @@ class Search extends React.Component {
             onClick={(event) => {
               this.props.onClick(this.state.search);
               event.preventDefault();
-            }  }
+            }}
           >Search</button>
         </form>
       </div>
     )
   }
 }
+
 export default Search;
