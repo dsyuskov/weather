@@ -4,6 +4,32 @@ export default class WeatherDay extends React.Component {
   constructor(props) {
     super(props);
   }
+  
+  state = {
+    currentDateTime: '',
+  }
+
+  getCurrentDateTime() {
+    const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July",
+                        "August", "September", "October", "November", "December"];
+    const addSero = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09'];
+    const date = new Date();
+    const dayName = dayNames[date.getDay()];
+    const day = date.getDate()
+    const month = monthNames[date.getMonth()];
+    const hour = date.getHours() < 10 ? addSero[date.getHours()] : date.getHours();
+    const min = date.getMinutes() < 10 ? addSero[date.getMinutes()] : date.getMinutes();
+    this.setState( {currentDateTime:`${dayName} ${day} ${month}  ${hour}:${min}` });
+  }
+
+  componentDidMount() {
+    this.timerID = setInterval(() => this.getCurrentDateTime(), 10000)
+  }
+  
+  componentWillMount() {
+    clearInterval(this.timerID);
+  }
 
   render() {
     const { weather } = this.props;
@@ -11,7 +37,7 @@ export default class WeatherDay extends React.Component {
     return (
       <div className="weather-day">
         <div className="weather-day__city">{ weather.city.name }, { weather.city.country }</div>
-        <div className="weather-day__date-time">Mon 28 October 17:23</div>
+        <div className="weather-day__date-time">{ this.state.currentDateTime }</div>
         <div className="weather-day__wrapper">
           <div className="weather-day__temp">
             <div className="weather-day__temp-value">{ weather.weather.temp }</div>
