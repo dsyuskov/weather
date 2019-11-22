@@ -1,6 +1,7 @@
 import React from 'react';
 import Search from '../search/cmp-search';
 import WeatherDay from '../weatherDay/cmp-weatherDay';
+import { WeatherForecastDay } from '../weatherForecastDay/cmp-weatherForecastDay';
 import { throttle } from 'lodash';
 
 const COUNT_MILLISECONDS_TO_MINUT = 1000;
@@ -39,7 +40,7 @@ class Page extends React.Component {
 
   render() {
     const { searchString } = this.state;
-    const { weather,  isError, isRequest } = this.props;
+    const { weather,  forecast } = this.props;
     console.log(this.props);
     if (!weather.city) {
       return (
@@ -88,13 +89,9 @@ class Page extends React.Component {
               weather={ weather }
             />
             <div className="weather-forecast">
-              <div className="weather-forecast__day">
-                <div className="weather-forecast__weekday">Tuesday</div>
-                <div className="weather-forecast__temp">7&deg;</div>
-                <div className="weather-forecast__img">
-                    <img src="./images/02d.png" />
-                </div>
-              </div>
+              {forecast.id && <WeatherForecastDay 
+                forecast={ forecast[0] }
+              />}
               <div className="weather-forecast__day">
                 <div className="weather-forecast__weekday">Wednesday</div>
                 <div className="weather-forecast__temp">6&deg;</div>

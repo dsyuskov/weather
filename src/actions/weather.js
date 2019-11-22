@@ -1,3 +1,4 @@
+import { getWeatherForecast } from '../actions/forecast'
 export const GET_WEATHER_REQUEST = 'GET_WEATHER_REQUEST';
 export const GET_WEATHER_SUCCESS = 'GET_WEATHER_SUCCESS';
 export const GET_WEATHER_FAILTURE = 'GET_WEATHER_FAILTURE';
@@ -32,7 +33,6 @@ export const getWeatherFailture = bool => {
 }
 
 export const getWeather = (city, units) => {
-  console.log('GET_WEATHER')
   return (dispatch) => {
     dispatch(getWeatherRequest(true));
     
@@ -46,9 +46,9 @@ export const getWeather = (city, units) => {
       })
       .then(response => response.json())
       .then(item => {
-        console.log(item);
-        dispatch(getWeatherFailture(false))
-        dispatch(getWeatherSuccess(preapreWeather(item)))
+        dispatch(getWeatherForecast(item.id, units));
+        dispatch(getWeatherFailture(false));
+        dispatch(getWeatherSuccess(preapreWeather(item)));
       })
       .catch(() => dispatch(getWeatherFailture(true)))
       }

@@ -32,7 +32,6 @@ export const getWeatherForecastFailture = bool => {
 export const getWeatherForecast = (city, units) => {
   return (dispatch) => {
     dispatch(getWeatherForecastRequest(true));
-
     fetch(`${PATH_BASE}${FORECAST}?${API_KEY}&${UNITS}${units}&${ID}${city}`)
       .then(response => {
         if (!response.ok) {

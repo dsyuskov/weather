@@ -26,14 +26,13 @@ export default class WeatherDay extends React.Component {
   componentDidMount() {
     this.timerID = setInterval(() => this.getCurrentDateTime(), 10000)
   }
-  
+
   componentWillMount() {
     clearInterval(this.timerID);
   }
 
   render() {
     const { weather } = this.props;
-    console.log (weather.weather.icon);
     return (
       <div className="weather-day">
         <div className="weather-day__city">{ weather.city.name }, { weather.city.country }</div>
@@ -44,7 +43,7 @@ export default class WeatherDay extends React.Component {
             <div className="weather-day__temp-deg">&deg;</div>
           </div>
           <div className="weather-day__img">
-            <img src={`./images/${weather.weather.icon}.png`} />
+            <img src={`./images/${weather.weather.icon}.png`} alt=''/>
           </div>
           <ul className="weather-day__more">
             <li className="weather-day__more-item">{ weather.weather.desc }</li>
