@@ -4,6 +4,7 @@ import WeatherDay from '../weatherDay/cmp-weatherDay';
 import { Map} from '../map/map'
 import { ControlPanel } from '../controlPanel/cmp-controlPanel';
 import { WeatherForecastDay } from '../weatherForecastDay/cmp-weatherForecastDay';
+import { getCountryName } from '../../service';
 
 class Page extends React.Component {
   constructor(props) {
@@ -40,9 +41,12 @@ class Page extends React.Component {
   }
 
   componentDidMount() {
-    navigator.geolocation.getCurrentPosition(pos => {
-      this.props.getWeatherCoord(pos.coords.latitude, pos.coords.longitude);
-    })
+    // navigator.geolocation.getCurrentPosition(pos => {
+    //   this.props.getWeatherCoord(pos.coords.latitude, pos.coords.longitude);
+    // })
+    getCountryName()
+      .then(result => console.log(result));
+    ;
   }
 
   render() {

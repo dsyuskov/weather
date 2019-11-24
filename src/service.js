@@ -68,3 +68,15 @@ export function translite(lang, key, value) {
 export function celsiusToFaringate(temp) {
   return Math.round(temp * (9 / 5) + 32);
 }
+
+export function getCountryName(code) {
+  return fetch(`https://restcountries.eu/rest/v2/alpha/ru`)
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText)
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(item => item)
+}

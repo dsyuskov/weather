@@ -48,6 +48,7 @@ export const getWeather = (city) => {
         dispatch(getWeatherFailture(false));
         dispatch(getWeatherSuccess(preapreWeather(item)));
       })
+      
       .catch(() => dispatch(getWeatherFailture(true)))
     }
 }
@@ -74,13 +75,13 @@ export const getWeatherCoord = (lat, lon) => {
     }
 }
 
-function preapreWeather(item) {
+function preapreWeather(item, countryName) {
   const result = {
     id: item.id,
     date: item.dt,
     city: {
       name: item.name,
-      country: item.sys.country,
+      country: countryName,
       coord:{
         lat: item.coord.lat,
         lon: item.coord.lon,
@@ -99,4 +100,19 @@ function preapreWeather(item) {
     },
   }
   return result;
+}
+
+function getCountryName(item) {
+  const code = item.sys.country;
+  fetch(`https://restcountries.eu/rest/v2/alpha/${code}`)
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText)
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(result =>  {
+        preapreWeather(item, result.nativeName);
+      })
 }
