@@ -1,21 +1,22 @@
 .button {
-  width: 44px;
-  height: 44px;
+  width: 2.75rem;
+  height: $cpElementHeight;
   border: 0;
-  border-radius: 5px;
+  border-radius: $cpElementBorderRadius;
+  white-space: nowrap;
   text-transform: uppercase;
-  font-family: 'Montserrat' sans-serif;
-  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: $cpElementFontSize;
   font-weight: bold;
-  color: #ffffff;
+  color: $fontColor;
+  background: $buttonBackground;
   cursor: pointer;
-  background: rgba(180, 184, 187, 0.4);
-
+  
   &:hover{
     opacity: 0.5;
   }
 
   &--selected {
-    background: rgba(76, 82, 85, 0.4);
+    background: $buttonBackgroundSelected;
   }
 }

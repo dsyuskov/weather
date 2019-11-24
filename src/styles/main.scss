@@ -7,13 +7,30 @@
 @import './control-panel.scss';
 @import './weather-day.scss';
 @import './weather-forecast.scss';
+@import './map.scss';
 
 * {
   margin: 0;
   padding: 0;
 }
 
-body {
-  background: black;
+html{
+  font-size: 16px;
+
+  @media (max-width: $large) {
+    font-size: 14px;
+  }
+  
+  @media (max-width: $medium) {
+    font-size: 12px;
+  }
+  @media (max-width: $small) {
+    font-size: 12px;
+  }
 }
 
+body {
+  box-sizing: border-box;
+  background: gray;
+  width: 100vw;
+}

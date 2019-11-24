@@ -3,19 +3,20 @@
 
   &__update {
     border: 0;
-    background: url('~../public/images/icon-update.svg');
+    background: url('~../public/images/icon-update1.svg') center center no-repeat;
+    background-color: $buttonBackground;
   }
 
   &__lang {
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 1rem;
+    margin-right: 1rem;
   }
 
   &__faringate {
-    border-radius: 5px 0 0 5px;
+    border-radius: $cpElementBorderRadius 0 0 $cpElementBorderRadius;
   }
 
   &__celsius {
-    border-radius: 0 5px 5px 0;
+    border-radius: 0 $cpElementBorderRadius $cpElementBorderRadius 0;
   }
 }

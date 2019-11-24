@@ -113,10 +113,12 @@ class Page extends React.Component {
               />}
             </div>
           </div>
+          <div className='mapContainer'>
           <Map 
             lat = { weather.city.coord.lat }
             lon = { weather.city.coord.lon }
           />
+          </div>
         </main>
     </div>
     )

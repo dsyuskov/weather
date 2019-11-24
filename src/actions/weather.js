@@ -3,7 +3,7 @@ export const GET_WEATHER_REQUEST = 'GET_WEATHER_REQUEST';
 export const GET_WEATHER_SUCCESS = 'GET_WEATHER_SUCCESS';
 export const GET_WEATHER_FAILTURE = 'GET_WEATHER_FAILTURE';
 
-const PATH_BASE = 'http://api.openweathermap.org/data/2.5/';
+const PATH_BASE = 'https://api.openweathermap.org/data/2.5/';
 const WEATHER = 'weather';
 const API_KEY = 'APPID=d5ecba2b149b9cdfb1fea656c735177d';
 const UNITS = 'units=metric';

@@ -5,12 +5,12 @@
   text-transform: uppercase;
   font-style: normal;
   font-weight: bold;
-  color: $font-color;
+  color: $fontColor;
 
   &__day {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 5fr;
+    grid-template-rows: 1fr 3fr;
     grid-template-areas:
       "weekday weekday"
       "temp img";
@@ -19,17 +19,48 @@
 
   &__weekday {
     grid-area: weekday;
-    font-size: 22px;
-    line-height: 27px;
+    font-size: 1.3rem;
+    line-height: 1.6rem;
+    
+    @media (max-width: $small) {
+      font-size: 0.7rem;
+      line-height: 1.3rem;
+    }
   }
 
   &__temp {
     grid-area: temp;
-    font-size: 80px;
-    line-height: 98px;
+    font-size: 5rem;
+    line-height: 6.5rem;
+
+    @media (max-width: $huge) {
+      font-size: 4rem;
+      line-height: 6rem;
+    }
+
+    @media (max-width: $large) {
+      font-size: 4rem;
+      line-height: 5.5rem;
+    }
+
+    @media (max-width: $medium) {
+      font-size: 3.5rem;
+      line-height: 5rem;
+    }
+
+    @media (max-width: $small) {
+      font-size: 3rem;
+      line-height: 4rem;
+    }
   }
 
   &__img {
     grid-area: img;
+
+    img {
+      @media (max-width: $small) {
+        width: 70%;
+       }
+    }
   }
 }

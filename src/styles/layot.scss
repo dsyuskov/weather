@@ -1,31 +1,39 @@
 .wrapper {
-  display: grid;
-  grid-template-columns: 1fr 14fr 1fr;
-  grid-template-rows: 1fr 1fr 30fr;
-  grid-template-areas: 
-    ". . ."
-    ". header ."
-    ". main .";
-  @media (max-width: $small) {
-    //margin: 1em;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 10fr;
-    grid-template-areas: 
-      "header"
-      "main";
-    }
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 5.5rem;
+  padding-top: 2.5rem;
+  box-sizing: border-box;
+
+  @media (max-width: $huge) {
+    padding: 4rem;
+    padding-top: 2rem;
+  }
+
+  @media (max-width: $large) {
+    padding: 3rem;
+    padding-top: 1.5rem;
+  }
+
+  @media (max-width: $medium) {
+    padding: 2rem;
+    padding-top: 1rem;
+  }
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   grid-area: header;
+
   @media (max-width: $small) {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr 0.3fr 1fr;
     grid-template-areas: 
       "panel"
+      "."
       "search";
     }
  }
@@ -39,36 +47,16 @@
  }
 
 .main {
-  grid-area: main;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 2fr 23fr;
-  grid-template-areas: 
-  ". ."
-  "weather ."
-  "weather map";
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 3.5rem;
 
   @media (max-width: $large) {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 8fr 7fr;
-    grid-template-areas: 
-      "."
-      "weather"
-      "map";
+    flex-direction: column;
   }
-}
 
-.weather {
-  grid-area: weather;
-}
-
-.map {
-  grid-area: map;
-  margin-left: auto;;
-  margin-right: 0;
-
-  @media (max-width: $large) {
-    margin-left: auto;
-    margin-right: auto;
+  @media (max-width: $small) {
+    margin-top: 1rem;
   }
 }

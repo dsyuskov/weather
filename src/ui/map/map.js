@@ -31,8 +31,8 @@ export class Map extends React.Component {
   render() {
     const style = {
       position: 'relative',
-      width: '80%',
-      height: '360px',
+      width: '100%',
+      height: '100%',
     };
 
     return <div style={style} ref={el => this.mapContainer = el} className='map'/>;
