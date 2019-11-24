@@ -1,4 +1,5 @@
 import React from 'react';
+import { translite } from '../../service';
 
 export default function Search(props){
   return (
@@ -17,7 +18,7 @@ export default function Search(props){
             props.onClick();
             event.preventDefault();
           }}
-        >Search</button>
+        >{ translite(props.lang, 'words', 'search') }</button>
       </form>
     </div>
   )

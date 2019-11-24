@@ -5,7 +5,7 @@ export const GET_WEATHER_FORECAST_FAILTURE = 'GET_WEATHER_FORECAST_FAILTURE';
 const PATH_BASE = 'http://api.openweathermap.org/data/2.5/';
 const FORECAST = 'forecast';
 const API_KEY = 'APPID=d5ecba2b149b9cdfb1fea656c735177d';
-const UNITS = 'units=';
+const UNITS = 'units=metric';
 const ID = 'id=';
 
 export const getWeatherForecastRequest = bool => {
@@ -32,7 +32,7 @@ export const getWeatherForecastFailture = bool => {
 export const getWeatherForecast = (city, units) => {
   return (dispatch) => {
     dispatch(getWeatherForecastRequest(true));
-    fetch(`${PATH_BASE}${FORECAST}?${API_KEY}&${UNITS}${units}&${ID}${city}`)
+    fetch(`${PATH_BASE}${FORECAST}?${API_KEY}&${UNITS}&${ID}${city}`)
       .then(response => {
         if (!response.ok) {
           throw Error(response.statusText)
@@ -53,7 +53,6 @@ function prepareForecast(items) {
   const HOURS_TO_DAY = 24;
   const MINUTS_TO_HOURS = 3600;
   const MILLISECONDS_TO_MINUTS = 1000;
-
   const DAY = HOURS_TO_DAY * MINUTS_TO_HOURS * MILLISECONDS_TO_MINUTS;
 
   const TODAY = new Date().setUTCHours(12, 0, 0, 0);
@@ -70,7 +69,7 @@ function prepareForecast(items) {
   forecastForThreeDays.forEach( (item, i) => {
     result[i] = {
       weekDay: new Date(NEXT_DAY[i]).getDay(),
-      temp: item.main.temp,
+      temp: Math.round(item.main.temp),
       icon: item.weather[0].icon,
     };
   });
