@@ -41,18 +41,21 @@ class Page extends React.Component {
   }
 
   componentDidMount() {
-    // navigator.geolocation.getCurrentPosition(pos => {
-    //   this.props.getWeatherCoord(pos.coords.latitude, pos.coords.longitude);
-    // })
-    getCountryName()
-      .then(result => console.log(result));
-    ;
+     navigator.geolocation.getCurrentPosition(pos => {
+       this.props.getWeatherCoord(pos.coords.latitude, pos.coords.longitude);
+     }, this.props.getCoord())
+  
+
+    // getCountryName()
+    //   .then(result => console.log(result));
+    // ;
   }
+  
 
   render() {
     const { searchString } = this.state;
     const { weather,  forecast, lang, isCelsius } = this.props;
-
+    console.log(this.props);
     if (!weather.city) {
       return (
         <div className="wrapper">

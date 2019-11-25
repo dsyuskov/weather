@@ -3,11 +3,13 @@ import Page from './cmp-page';
 import { getWeather, getWeatherCoord } from '../../actions/weather';
 import { getWeatherForecast } from '../../actions/forecast';
 import { changeLang, changeUseCelsius } from '../../actions/controlPanel';
+import { getCoord }  from "../../actions/coordByIp";
 
 function mapStateToProps (state) {
   const { weather, isRequest, isError } = state.weather;
   const { forecast, isRequestForecast, isErrorForecast } = state.forecast;
   const { lang, isCelsius } = state.controlPanel;
+  const { coord } = state.coordByIp;
   return { 
     isRequest,
     weather,
@@ -17,6 +19,7 @@ function mapStateToProps (state) {
     isErrorForecast,
     lang,
     isCelsius,
+    coord,
   }
 }
 
@@ -27,6 +30,7 @@ const mapDispatchToProps = (dispatch) => {
     getWeatherForecast: (city) => dispatch(getWeatherForecast(city)),
     changeLang: (lang) => dispatch(changeLang(lang)),
     changeUseCelsius: (isCelsius) => dispatch(changeUseCelsius(isCelsius)),
+    getCoord: () => dispatch(getCoord()),
   };
 };
 
