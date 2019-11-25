@@ -12,55 +12,69 @@ class Page extends React.Component {
     this.onSearchChange = this.onSearchChange.bind(this);
     this.onClickCelsius = this.onClickCelsius.bind(this);
     this.onClickFaringate = this.onClickFaringate.bind(this);
-    this.onControlPanelChange = this.onControlPanelChange.bind(this);
+    this.onChangeLang = this.onChangeLang.bind(this);
     this.onClick = this.onClick.bind(this);
   }
 
-  state = {
-    searchString: '',
-  }
-
   onSearchChange = event => {
-    this.setState({ searchString: event.target.value});
+    this.props.changeSearchString(event.target.value);
   }
 
-  onControlPanelChange = event => {
+  onChangeLang = event => {
     this.props.changeLang(event.target.value);
+    localStorage.setItem('lang', event.target.value);
   }
 
   onClickCelsius() {
     this.props.changeUseCelsius(true);
+    localStorage.setItem('isCelsius', true);
   }
 
   onClickFaringate() {
     this.props.changeUseCelsius(false);
+    localStorage.setItem('isCelsius', false);
   }
 
   onClick() {
-    this.props.getWeatherByCity(this.state.searchString, 'metric');
+    this.props.getWeatherByCity(this.props.searchString, 'metric');
+    localStorage.setItem('searchString', this.props.searchString); 
+  }
+
+  loadSetting() {
+    if (this.props.isCelsius === 'true') {
+      this.onClickCelsius();
+    } else {
+      this.onClickFaringate();
+    }
   }
 
   componentDidMount() {
-    navigator.geolocation.getCurrentPosition(
-      (pos => {this.props.getWeatherByCoord(pos.coords.latitude, pos.coords.longitude)}),
-      this.props.getWeatherByCoord,
-    );
+    this.loadSetting();
+
+    if (this.props.searchString === '') {
+      navigator.geolocation.getCurrentPosition(
+        (pos => {this.props.getWeatherByCoord(pos.coords.latitude, pos.coords.longitude)}),
+        this.props.getWeatherByCoord,
+      );
+    } else {
+      this.props.getWeatherByCity(this.props.searchString, 'metric');
+    }
   }
 
   render() {
-    const { searchString } = this.state;
-    const { weather,  forecast, lang, isCelsius } = this.props;
-    console.log(this.props);
+    const { weather,  forecast, lang, isCelsius, searchString } = this.props;
+
     if (!weather.city) {
       return (
         <div className="wrapper">
           <header className="header">
             <ControlPanel 
-              isCelsius={ isCelsius }
+              value = { lang }
+              isCelsius = { isCelsius }
               onClickUpdate = { this.onClick }
               onClickFaringate = {this.onClickFaringate }
               onClickCelsius = { this.onClickCelsius }
-              onChange= { this.onControlPanelChange }
+              onChangeLang= { this.onChangeLang }
             />
             <Search 
               lang={ lang }
@@ -77,11 +91,12 @@ class Page extends React.Component {
       <div className="wrapper">
         <header className="header">
           <ControlPanel 
+            value = { lang }
             isCelsius={ isCelsius }
             onClickUpdate= { this.onClick }
             onClickFaringate = {this.onClickFaringate }
             onClickCelsius = { this.onClickCelsius }
-            onChange= { this.onControlPanelChange }
+            onChangeLang= { this.onChangeLang }
           />
           <Search
             lang={ lang }

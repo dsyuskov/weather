@@ -21,7 +21,7 @@ export function ControlPanel(props) {
     ></button>
     <select 
       value={ props.value }
-      onChange={ props.onChange }
+      onChange={ props.onChangeLang }
       className="dropdown control-panel__lang">
       <option className="dropdown__item" value="en">en</option>
       <option className="dropdown__item" value="ru">ru</option>

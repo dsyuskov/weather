@@ -2,13 +2,14 @@ import { connect } from 'react-redux';
 import Page from './cmp-page';
 import { getWeatherByCity, getWeatherByCoord } from '../../actions/weather';
 import { getWeatherForecast } from '../../actions/forecast';
-import { changeLang, changeUseCelsius } from '../../actions/controlPanel';
+import { changeLang, changeUseCelsius, changeSearchString } from '../../actions/controlPanel';
 
 function mapStateToProps (state) {
   const { weather, isRequest, isError } = state.weather;
   const { forecast, isRequestForecast, isErrorForecast } = state.forecast;
-  const { lang, isCelsius } = state.controlPanel;
+  const { lang, isCelsius, searchString } = state.controlPanel;
   return { 
+    searchString,
     isRequest,
     weather,
     isError,
@@ -27,7 +28,9 @@ const mapDispatchToProps = (dispatch) => {
     getWeatherForecast: (city) => dispatch(getWeatherForecast(city)),
     changeLang: (lang) => dispatch(changeLang(lang)),
     changeUseCelsius: (isCelsius) => dispatch(changeUseCelsius(isCelsius)),
+    changeSearchString: (searchString) => dispatch(changeSearchString(searchString)),
   };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Page);
+
