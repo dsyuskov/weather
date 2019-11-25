@@ -25,7 +25,6 @@
 .header {
   display: flex;
   justify-content: space-between;
-  grid-area: header;
 
   @media (max-width: $small) {
     display: grid;

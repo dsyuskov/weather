@@ -9,7 +9,6 @@ const initState = {
 }
 
 export default function(state = initState, action) {
-  console.log('controlPanel', action);
   switch (action.type) {
     case CHANGE_LANG: {
       return {

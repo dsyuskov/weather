@@ -11,7 +11,6 @@ const initState = {
 }
 
 export default function(state = initState, action) {
-  console.log('forecast',action);
   switch (action.type) {
     case GET_WEATHER_FORECAST_REQUEST: {
       return {

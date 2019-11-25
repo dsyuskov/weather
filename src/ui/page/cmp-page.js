@@ -37,20 +37,15 @@ class Page extends React.Component {
   }
 
   onClick() {
-    this.props.getWeather(this.state.searchString, 'metric');
+    this.props.getWeatherByCity(this.state.searchString, 'metric');
   }
 
   componentDidMount() {
-     navigator.geolocation.getCurrentPosition(pos => {
-       this.props.getWeatherCoord(pos.coords.latitude, pos.coords.longitude);
-     }, this.props.getCoord())
-  
-
-    // getCountryName()
-    //   .then(result => console.log(result));
-    // ;
+    navigator.geolocation.getCurrentPosition(
+      (pos => {this.props.getWeatherByCoord(pos.coords.latitude, pos.coords.longitude)}),
+      this.props.getWeatherByCoord,
+    );
   }
-  
 
   render() {
     const { searchString } = this.state;

@@ -30,7 +30,7 @@ export const getWeatherFailture = bool => {
   }
 }
 
-export const getWeather = (city) => {
+export const getWeatherByCity = (city) => {
   return (dispatch) => {
     dispatch(getWeatherRequest(true));
 
@@ -53,11 +53,21 @@ export const getWeather = (city) => {
     }
 }
 
-export const getWeatherCoord = (lat, lon) => {
-  return (dispatch) => {
+export const getWeatherByCoord = (lat, lon) => {
+
+  return async (dispatch) => {
     dispatch(getWeatherRequest(true));
-    
-    fetch(`${PATH_BASE}${WEATHER}?${API_KEY}&${UNITS}&lat=${lat}&lon=${lon}`)
+
+    let coord = {
+      lat: lat,
+      lon: lon,
+    }
+
+    if (!lon) {
+      coord = await getCoordsByIP();
+    }
+
+    fetch(`${PATH_BASE}${WEATHER}?${API_KEY}&${UNITS}&lat=${coord.lat}&lon=${coord.lon}`)
       .then(response => {
         if (!response.ok) {
           throw Error(response.statusText)
@@ -102,17 +112,22 @@ function preapreWeather(item, countryName) {
   return result;
 }
 
-function getCountryName(item) {
-  const code = item.sys.country;
-  fetch(`https://restcountries.eu/rest/v2/alpha/${code}`)
-      .then(response => {
-        if (!response.ok) {
-          throw Error(response.statusText)
-        }
-        return response;
-      })
-      .then(response => response.json())
-      .then(result =>  {
-        preapreWeather(item, result.nativeName);
-      })
+async function getCoordsByIP() {
+  const PATH_BASE = 'https://ipinfo.io/';
+  const API_KEY = 'token=0f3c2185f8d434';
+  const response = await fetch(`${PATH_BASE}?${API_KEY}`);
+
+  if (!response.ok) {
+    throw new Error(`getCoordsByIP failed, HTTP status ${response.status}`);
+  }
+
+  const coords = await response.json();
+
+  const stringCoord = coords.loc;
+  const commaIndex = stringCoord.indexOf(',');
+
+  return {
+   lat: stringCoord.slice(0, commaIndex),
+   lon: stringCoord.slice(commaIndex+1),
+  }
 }
