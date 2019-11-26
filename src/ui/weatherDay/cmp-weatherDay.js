@@ -12,12 +12,14 @@ export default class WeatherDay extends React.Component {
 
   getCurrentDateTime() {
     const addSero = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09'];
-    const date = new Date();
-    const dayName = translite(this.props.lang, 'shortDayName',date.getDay());
-    const day = date.getDate()
-    const month = translite(this.props.lang,'fullMonthName',date.getMonth());
-    const hour = date.getHours() < 10 ? addSero[date.getHours()] : date.getHours();
-    const min = date.getMinutes() < 10 ? addSero[date.getMinutes()] : date.getMinutes();
+    let date = new Date();
+    date.setUTCSeconds(date.getUTCSeconds()+this.props.weather.timezone);
+    const dayName = translite(this.props.lang, 'shortDayName',date.getUTCDay());
+    const day = date.getUTCDate()
+    const month = translite(this.props.lang,'fullMonthName',date.getUTCMonth());
+    const hour = date.getUTCHours() < 10 ? addSero[date.getUTCHours()] : date.getUTCHours();
+    const min = date.getUTCMinutes() < 10 ? addSero[date.getUTCMinutes()] : date.getUTCMinutes();
+
     this.setState( {currentDateTime:`${dayName} ${day} ${month}  ${hour}:${min}` });
   }
 
