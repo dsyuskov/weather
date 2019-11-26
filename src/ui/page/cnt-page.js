@@ -9,7 +9,7 @@ function mapStateToProps (state) {
   const { weather, isRequest, isError } = state.weather;
   const { forecast, isRequestForecast, isErrorForecast } = state.forecast;
   const { lang, isCelsius, searchString } = state.controlPanel;
-  const { backgroundImage } = state.backgroundImage;
+  const { backgroundImage, timesOfDay, season, weatherForBackground  } = state.backgroundImage;
   return { 
     searchString,
     isRequest,
@@ -21,6 +21,9 @@ function mapStateToProps (state) {
     lang,
     isCelsius,
     backgroundImage,
+    timesOfDay,
+    season,
+    weatherForBackground,
   }
 }
 

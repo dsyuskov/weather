@@ -5,7 +5,7 @@ import { Map} from '../map/map'
 import { ControlPanel } from '../controlPanel/cmp-controlPanel';
 import { WeatherForecastDay } from '../weatherForecastDay/cmp-weatherForecastDay';
 import { getCountryName } from '../../service';
-import backgroundImage from '../../reducers/backgroundImage';
+
 
 class Page extends React.Component {
   constructor(props) {
@@ -15,6 +15,7 @@ class Page extends React.Component {
     this.onClickFaringate = this.onClickFaringate.bind(this);
     this.onChangeLang = this.onChangeLang.bind(this);
     this.onClick = this.onClick.bind(this);
+    this.onUpdateClick = this.onUpdateClick.bind(this);
   }
 
   onSearchChange = event => {
@@ -37,24 +38,36 @@ class Page extends React.Component {
   }
 
   onClick() {
-    this.props.getBackgroundImage('rain, morning');
-    // this.props.getWeatherByCity(this.props.searchString, 'metric');
-    // localStorage.setItem('searchString', this.props.searchString); 
+    const { timesOfDay, season, weatherForBackground, searchString } = this.props;
+    this.props.getBackgroundImage(`${timesOfDay}, ${season}, ${weatherForBackground}`);
+
+    this.props.getWeatherByCity(searchString, 'metric');
+    localStorage.setItem('searchString', searchString); 
+  }
+
+  onUpdateClick() {
+    const { timesOfDay, season, weatherForBackground } = this.props;
+    this.props.getBackgroundImage(`${timesOfDay}, ${season}, ${weatherForBackground}`);
   }
 
   loadSetting() {
-    this.props.getBackgroundImage('rain, morning');
     if (this.props.isCelsius === 'true') {
       this.onClickCelsius();
     } else {
       this.onClickFaringate();
     }
   }
+
   componentDidUpdate() {
-    //this.props.getBackgroundImage('moscow');
+    document.body.style.background = `url("${this.props.backgroundImage}")`;
+    document.body.style.backgroundSize = 'cover';
+    document.body.style.backgroundRepeat = 'no-repeat';
   }
+
   componentDidMount() {
-     this.loadSetting();
+    const { timesOfDay, season, weatherForBackground, searchString } = this.props;
+
+    this.loadSetting();
 
     if (this.props.searchString === '') {
       navigator.geolocation.getCurrentPosition(
@@ -62,25 +75,25 @@ class Page extends React.Component {
         this.props.getWeatherByCoord,
       );
     } else {
-      this.props.getWeatherByCity(this.props.searchString, 'metric');
+      this.props.getWeatherByCity(searchString, 'metric');
     }
-    
+
+    this.props.getBackgroundImage(`${timesOfDay}, ${season}, ${weatherForBackground}`);
+
   }
 
   render() {
-    const { weather,  forecast, lang, isCelsius, searchString, backgroundImage } = this.props;
-    console.log(backgroundImage);
-    const wrapperStyle = {
-      backgroundImage: `url(${backgroundImage})`
-    }
+    const { weather,  forecast, lang, isCelsius, searchString } = this.props;
+    console.log(this.props);
+
     if (!weather.city) {
       return (
-        <div className="wrapper" style={ wrapperStyle }>
+        <div className="wrapper">
           <header className="header">
             <ControlPanel 
               value = { lang }
               isCelsius = { isCelsius }
-              onClickUpdate = { this.onClick }
+              onClickUpdate = { this.onUpdateClick }
               onClickFaringate = {this.onClickFaringate }
               onClickCelsius = { this.onClickCelsius }
               onChangeLang= { this.onChangeLang }
@@ -97,12 +110,12 @@ class Page extends React.Component {
     }
 
     return (
-      <div className="wrapper" style={ wrapperStyle }>
+      <div className="wrapper">
         <header className="header">
           <ControlPanel 
             value = { lang }
             isCelsius={ isCelsius }
-            onClickUpdate= { this.onClick }
+            onClickUpdate= { this.onUpdateClick }
             onClickFaringate = {this.onClickFaringate }
             onClickCelsius = { this.onClickCelsius }
             onChangeLang= { this.onChangeLang }

@@ -1,11 +1,16 @@
+import { getCurrentSeason, getTimesOfDay } from '../service'
 import {
   GET_BACKGROUND_REQUEST,
   GET_BACKGROUND_SUCCESS,
   GET_BACKGROUND_FAILTURE,
+  GET_WEATHER_FOR_BACKGROUND,
  } from '../actions/backgroundImage';
 
 const initState = {
     backgroundImage: '',
+    timesOfDay: getTimesOfDay(),
+    season: getCurrentSeason(),
+    weatherForBackground: '',
     isRequestBackgroundImage: false,
     isErrorBackgroundImage: false
 }
@@ -28,6 +33,12 @@ const initState = {
         return {
           ...state,
           isErrorBackgroundImage: action.payload
+        }
+      }
+      case GET_WEATHER_FOR_BACKGROUND: {
+        return {
+          ...state,
+          weatherForBackground: action.payload
         }
       }
       default:
