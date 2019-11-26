@@ -4,20 +4,11 @@ import {
   CHANGE_SEARCH_STRING,
   } from '../actions/controlPanel';
 
-// const initState = {
-//   lang: 'en',
-//   isCelsius: 'true',
-//   searchString: '',
-// }
-
 const initState = {
   lang: localStorage.getItem('lang') ? localStorage.getItem('lang') : 'en',
   isCelsius: localStorage.getItem('isCelsius') ? localStorage.getItem('isCelsius') : 'true',
   searchString: localStorage.getItem('searchString') ? localStorage.getItem('searchString') : '',
 }
-// const isCelsius = localStorage.getItem('isCelsius') ? localStorage.getItem('isCelsius') : 'true';
-// const lang = localStorage.getItem('lang') ? localStorage.getItem('lang') : 'en';
-// const searchString = localStorage.getItem('searchString') ? localStorage.getItem('searchString') : '';
 
 export default function(state = initState, action) {
   switch (action.type) {

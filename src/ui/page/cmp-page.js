@@ -5,6 +5,7 @@ import { Map} from '../map/map'
 import { ControlPanel } from '../controlPanel/cmp-controlPanel';
 import { WeatherForecastDay } from '../weatherForecastDay/cmp-weatherForecastDay';
 import { getCountryName } from '../../service';
+import backgroundImage from '../../reducers/backgroundImage';
 
 class Page extends React.Component {
   constructor(props) {
@@ -36,20 +37,24 @@ class Page extends React.Component {
   }
 
   onClick() {
-    this.props.getWeatherByCity(this.props.searchString, 'metric');
-    localStorage.setItem('searchString', this.props.searchString); 
+    this.props.getBackgroundImage('rain, morning');
+    // this.props.getWeatherByCity(this.props.searchString, 'metric');
+    // localStorage.setItem('searchString', this.props.searchString); 
   }
 
   loadSetting() {
+    this.props.getBackgroundImage('rain, morning');
     if (this.props.isCelsius === 'true') {
       this.onClickCelsius();
     } else {
       this.onClickFaringate();
     }
   }
-
+  componentDidUpdate() {
+    //this.props.getBackgroundImage('moscow');
+  }
   componentDidMount() {
-    this.loadSetting();
+     this.loadSetting();
 
     if (this.props.searchString === '') {
       navigator.geolocation.getCurrentPosition(
@@ -59,14 +64,18 @@ class Page extends React.Component {
     } else {
       this.props.getWeatherByCity(this.props.searchString, 'metric');
     }
+    
   }
 
   render() {
-    const { weather,  forecast, lang, isCelsius, searchString } = this.props;
-
+    const { weather,  forecast, lang, isCelsius, searchString, backgroundImage } = this.props;
+    console.log(backgroundImage);
+    const wrapperStyle = {
+      backgroundImage: `url(${backgroundImage})`
+    }
     if (!weather.city) {
       return (
-        <div className="wrapper">
+        <div className="wrapper" style={ wrapperStyle }>
           <header className="header">
             <ControlPanel 
               value = { lang }
@@ -88,7 +97,7 @@ class Page extends React.Component {
     }
 
     return (
-      <div className="wrapper">
+      <div className="wrapper" style={ wrapperStyle }>
         <header className="header">
           <ControlPanel 
             value = { lang }
