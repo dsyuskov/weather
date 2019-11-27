@@ -50,29 +50,17 @@ export const getWeatherForecast = (city, units) => {
 }
 
 function prepareForecast(items) {
-  const HOURS_TO_DAY = 24;
-  const MINUTS_TO_HOURS = 3600;
-  const MILLISECONDS_TO_MINUTS = 1000;
-  const DAY = HOURS_TO_DAY * MINUTS_TO_HOURS * MILLISECONDS_TO_MINUTS;
-
-  const TODAY = new Date().setUTCHours(12, 0, 0, 0);
-
-  const NEXT_DAY = [];
-  NEXT_DAY.push(new Date(TODAY + DAY).getTime());
-  NEXT_DAY.push(new Date(TODAY + DAY * 2).getTime());
-  NEXT_DAY.push(new Date(TODAY + DAY * 3).getTime());
-
-  const forecastForThreeDays = items.list.filter((item) =>  NEXT_DAY.includes( item.dt * MILLISECONDS_TO_MINUTS ));
-
-  const result = {};
-
-  forecastForThreeDays.forEach( (item, i) => {
+  const result= [];
+  const countDaysOfForecast = 8;
+  for (let i = 0; i < 3; i++){
+    const day = new Date();
+    day.setDate(day.getDate() + i);
+    const dayToStr = day.getFullYear()+'-'+(day.getMonth() + 1)+'-'+(day.getDate() + 1);
     result[i] = {
-      weekDay: new Date(NEXT_DAY[i]).getDay(),
-      temp: Math.round(item.main.temp),
-      icon: item.weather[0].icon,
-    };
-  });
-
-  return  result;
-};
+      weekDay: day.getDay(),
+      temp: Math.round(items.list.filter(item => item.dt_txt.includes(dayToStr)).reduce((sum, item) => { return sum + item.main.temp }, 0) / countDaysOfForecast),
+      icon: items.list.filter(item => item.dt_txt.includes(`${dayToStr} 12:00:00`))[0].weather[0].icon,
+    }
+  }
+  return result;
+}
