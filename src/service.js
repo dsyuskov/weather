@@ -26,7 +26,7 @@ const word = {
       802: 'Scattered clouds', 803: 'Broken clouds', 804: 'Overcast clouds',
     },
     words: {
-      feels: 'Feels', wind: 'Wind', humidity: 'Humidity', search: 'Search',
+      feels: 'Feels', wind: 'Wind', humidity: 'Humidity', search: 'Search', lat: 'Latitude', lon: 'Longtitude',
     }
   },
   ru: {
@@ -56,7 +56,7 @@ const word = {
       802: 'Рассеянные облака', 803: 'Рассеянные облака', 804: 'Пасмурные облака',
     },
     words: {
-      feels: 'Ощущается', wind: 'Ветер', humidity: 'Влажность', search: 'Поиск',
+      feels: 'Ощущается', wind: 'Ветер', humidity: 'Влажность', search: 'Поиск', lat: 'Широта', lon: 'Долгота',
     }
   },
 }

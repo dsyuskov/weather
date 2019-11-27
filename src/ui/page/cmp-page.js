@@ -62,6 +62,7 @@ class Page extends React.Component {
     document.body.style.background = `url("${this.props.backgroundImage}")`;
     document.body.style.backgroundSize = 'cover';
     document.body.style.backgroundRepeat = 'no-repeat';
+    document.body.style.backgroundPosition = 'center center';
   }
 
   componentDidMount() {
@@ -152,12 +153,11 @@ class Page extends React.Component {
               />}
             </div>
           </div>
-          <div className='mapContainer'>
-          <Map 
+          <Map
+            lang={ lang }
             lat = { weather.city.coord.lat }
             lon = { weather.city.coord.lon }
           />
-          </div>
         </main>
     </div>
     )
