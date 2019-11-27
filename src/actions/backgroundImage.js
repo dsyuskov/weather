@@ -49,7 +49,7 @@ export const getBackgroundImage = (searchString) => {
 
   return (dispatch) => {
     dispatch(getImageRequest(true));
-
+    searchString = 'city, '+searchString;
     fetch(`${PATH_BASE}?${API_KEY}&${METHOD}&${FORMAT}&${PATH_SEARCH}${searchString}`)
       .then(response => {
         if (!response.ok) {
