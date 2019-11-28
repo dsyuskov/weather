@@ -1,6 +1,6 @@
 import { getWeatherForecast } from '../actions/forecast';
 import { getWeatherForBackground } from '../actions/backgroundImage';
-
+import { countrys  } from "../countrys";
 export const GET_WEATHER_REQUEST = 'GET_WEATHER_REQUEST';
 export const GET_WEATHER_SUCCESS = 'GET_WEATHER_SUCCESS';
 export const GET_WEATHER_FAILTURE = 'GET_WEATHER_FAILTURE';
@@ -46,8 +46,6 @@ export const getWeatherByCity = (city) => {
       })
       .then(response => response.json())
       .then(item => {
-        console.log(1);
-        console.log(item.weather[0].main);
         dispatch(getWeatherForecast(item.id));
         dispatch(getWeatherForBackground(item.weather[0].main));
         dispatch(getWeatherFailture(false));
@@ -91,14 +89,14 @@ export const getWeatherByCoord = (lat, lon) => {
     }
 }
 
-function preapreWeather(item, countryName) {
+function preapreWeather(item) {
   const result = {
     id: item.id,
     date: item.dt,
     timezone: item.timezone,
     city: {
       name: item.name,
-      country: countryName,
+      country: countrys[item.sys.country],
       coord:{
         lat: item.coord.lat,
         lon: item.coord.lon,
@@ -106,7 +104,6 @@ function preapreWeather(item, countryName) {
     },
     weather: {
       id: item.weather[0].id,
-      //main: item.weather[0].main,
       temp: Math.round(item.main.temp),
       feels: Math.round(13.12 + 0.6215*Math.round(item.main.temp) - 11.37*Math.pow(item.wind.speed, 0.16) + 0.3965*Math.round(item.main.temp)*Math.pow(item.wind.speed, 0.16)),
       humidity: item.main.humidity,

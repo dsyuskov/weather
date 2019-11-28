@@ -7,7 +7,7 @@ import {
 const initState = {
   lang: localStorage.getItem('lang') ? localStorage.getItem('lang') : 'en',
   isCelsius: localStorage.getItem('isCelsius') ? localStorage.getItem('isCelsius') : 'true',
-  searchString: localStorage.getItem('searchString') ? localStorage.getItem('searchString') : '',
+  searchString: '',// localStorage.getItem('searchString') ? localStorage.getItem('searchString') : '',
 }
 
 export default function(state = initState, action) {

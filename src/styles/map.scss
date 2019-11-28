@@ -1,15 +1,16 @@
-
-.mapContainer {
-  max-width: 375px;
-  max-height: 375px;
-  width: 375px;;
-  height: 375px;
+.geoposition {
   font-family: 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: bold;
   color: $fontColor;
   font-size: 1.3rem;
   line-height: 2.3rem;
+}
+.mapContainer {
+  max-width: 375px;
+  max-height: 375px;
+  width: 375px;;
+  height: 375px;
 
   @media (max-width: $large) {
     width: 80vw;
@@ -17,11 +18,6 @@
     margin-top: 2rem;
     margin-left: auto;
     margin-right: auto;
-  }
-
-  @media (max-width: $small) {
-    font-size: 0.7rem;
-    line-height: 1.3rem;
   }
 }
 

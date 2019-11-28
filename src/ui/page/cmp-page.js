@@ -63,12 +63,14 @@ class Page extends React.Component {
     document.body.style.backgroundSize = 'cover';
     document.body.style.backgroundRepeat = 'no-repeat';
     document.body.style.backgroundPosition = 'center center';
+    document.body.style.backgroundAttachment = 'fixed';
   }
 
   componentDidMount() {
     const { timesOfDay, season, weatherForBackground, searchString } = this.props;
-
     this.loadSetting();
+
+    this.props.getBackgroundImage(`${timesOfDay}, ${season}, ${weatherForBackground}`);
 
     if (this.props.searchString === '') {
       navigator.geolocation.getCurrentPosition(
@@ -78,24 +80,20 @@ class Page extends React.Component {
     } else {
       this.props.getWeatherByCity(searchString, 'metric');
     }
-
-    this.props.getBackgroundImage(`${timesOfDay}, ${season}, ${weatherForBackground}`);
-
   }
 
   render() {
-    const { weather,  forecast, lang, isCelsius, searchString, isRequest, isRequestForecast } = this.props;
+    const { weather,  forecast, lang, isCelsius, searchString, isRequestWeather, isRequestForecast, isRequestBackgroundImage } = this.props;
 
-    if (isRequest || isRequestForecast) {
+    if (isRequestWeather || isRequestForecast || isRequestBackgroundImage) {
       return <div className="async-spinner"></div>
     }
 
-    console.log(this.props);
     if (!weather.city) {
       return (
         <div className="wrapper">
           <header className="header">
-            <ControlPanel 
+            <ControlPanel
               value = { lang }
               isCelsius = { isCelsius }
               onClickUpdate = { this.onUpdateClick }

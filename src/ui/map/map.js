@@ -40,10 +40,12 @@ export class Map extends React.Component {
     const lon = (''+this.props.lon).split('.');
 
     return (
-      <div className='mapContainer'>
-        <div style={style} ref={el => this.mapContainer = el} className='map'/>
-        <div>{translite(this.props.lang,'words', 'lat')}: { lat[0] }&deg;{ lat[1] }'</div>
-        <div>{translite(this.props.lang,'words', 'lon')}: { lon[0] }&deg;{ lon[1] }'</div>
+      <div className="geoposition">
+        <div className='mapContainer'>
+          <div style={style} ref={el => this.mapContainer = el} className='map'/>
+        </div>
+        <p>{translite(this.props.lang,'words', 'lat')}: { lat[0] }&deg;{ lat[1] }'</p>
+        <p>{translite(this.props.lang,'words', 'lon')}: { lon[0] }&deg;{ lon[1] }'</p>
       </div>
     )
   }

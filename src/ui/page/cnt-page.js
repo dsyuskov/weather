@@ -6,17 +6,18 @@ import { changeLang, changeUseCelsius, changeSearchString } from '../../actions/
 import { getBackgroundImage } from "../../actions/backgroundImage";
 
 function mapStateToProps (state) {
-  const { weather, isRequest, isError } = state.weather;
+  const { weather, isRequestWeather, isError } = state.weather;
   const { forecast, isRequestForecast, isErrorForecast } = state.forecast;
   const { lang, isCelsius, searchString } = state.controlPanel;
-  const { backgroundImage, timesOfDay, season, weatherForBackground  } = state.backgroundImage;
-  return { 
+  const { backgroundImage, timesOfDay, season, weatherForBackground, isRequestBackgroundImage  } = state.backgroundImage;
+  return {
+    isRequestWeather,
+    isRequestForecast,
+    isRequestBackgroundImage,
     searchString,
-    isRequest,
     weather,
     isError,
     forecast,
-    isRequestForecast,
     isErrorForecast,
     lang,
     isCelsius,

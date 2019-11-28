@@ -5,7 +5,7 @@ export default class WeatherDay extends React.Component {
   constructor(props) {
     super(props);
   }
-  
+
   state = {
     currentDateTime: '',
   }
@@ -25,8 +25,8 @@ export default class WeatherDay extends React.Component {
     this.timerID = setInterval(() => this.getCurrentDateTime(), 10);
   }
 
-  componentWillMount() {
-    clearInterval(this.timerID);
+  componentWillUnmount() {
+   clearInterval(this.timerID);
   }
 
   render() {
