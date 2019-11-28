@@ -84,9 +84,13 @@ class Page extends React.Component {
   }
 
   render() {
-    const { weather,  forecast, lang, isCelsius, searchString } = this.props;
-    console.log(this.props);
+    const { weather,  forecast, lang, isCelsius, searchString, isRequest, isRequestForecast } = this.props;
 
+    if (isRequest || isRequestForecast) {
+      return <div className="async-spinner"></div>
+    }
+
+    console.log(this.props);
     if (!weather.city) {
       return (
         <div className="wrapper">
