@@ -102,3 +102,8 @@ export function getCurrentSeason() {
   
   return 'winter';
 }
+
+export function addSero(n) {
+  const addSero = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09'];
+  return n < 10 ? addSero[n] : n;
+}

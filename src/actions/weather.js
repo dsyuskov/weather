@@ -82,8 +82,6 @@ export const getWeatherByCoord = (lat, lon) => {
       })
       .then(response => response.json())
       .then(item => {
-        console.log(1);
-        console.log(item);
         dispatch(getWeatherForecast(item.id));
         dispatch(getWeatherForBackground(item.weather[0].main));
         dispatch(getWeatherFailture(false));

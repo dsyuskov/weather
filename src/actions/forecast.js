@@ -1,3 +1,5 @@
+import { addSero } from "../service";
+
 export const GET_WEATHER_FORECAST_REQUEST  = 'GET_WEATHER_FORECAST_REQUEST';
 export const GET_WEATHER_FORECAST_SUCCESS  = 'GET_WEATHER_FORECAST_SUCCESS';
 export const GET_WEATHER_FORECAST_FAILTURE = 'GET_WEATHER_FORECAST_FAILTURE';
@@ -54,8 +56,8 @@ function prepareForecast(items) {
   const countDaysOfForecast = 8;
   for (let i = 0; i < 3; i++){
     const day = new Date();
-    day.setDate(day.getDate() + i);
-    const dayToStr = day.getFullYear()+'-'+(day.getMonth() + 1)+'-'+(day.getDate() + 1);
+    day.setDate(day.getDate() + i + 1);
+    const dayToStr = day.getFullYear()+'-'+addSero(day.getMonth() + 1)+'-'+addSero(day.getDate());
     result[i] = {
       weekDay: day.getDay(),
       temp: Math.round(items.list.filter(item => item.dt_txt.includes(dayToStr)).reduce((sum, item) => { return sum + item.main.temp }, 0) / countDaysOfForecast),

@@ -1,5 +1,5 @@
 import React from 'react';
-import { translite, celsiusToFaringate } from '../../service';
+import { translite, celsiusToFaringate, addSero } from '../../service';
 
 export default class WeatherDay extends React.Component {
   constructor(props) {
@@ -11,15 +11,13 @@ export default class WeatherDay extends React.Component {
   }
 
   getCurrentDateTime() {
-    const addSero = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09'];
     let date = new Date();
     date.setUTCSeconds(date.getUTCSeconds()+this.props.weather.timezone);
     const dayName = translite(this.props.lang, 'shortDayName',date.getUTCDay());
     const day = date.getUTCDate()
     const month = translite(this.props.lang,'fullMonthName',date.getUTCMonth());
-    const hour = date.getUTCHours() < 10 ? addSero[date.getUTCHours()] : date.getUTCHours();
-    const min = date.getUTCMinutes() < 10 ? addSero[date.getUTCMinutes()] : date.getUTCMinutes();
-
+    const hour = addSero(date.getUTCHours());
+    const min = addSero(date.getUTCMinutes());
     this.setState( {currentDateTime:`${dayName} ${day} ${month}  ${hour}:${min}` });
   }
 
