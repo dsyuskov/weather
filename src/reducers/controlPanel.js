@@ -2,33 +2,33 @@ import {
   CHANGE_LANG,
   CHANGE_USE_CELSIUS,
   CHANGE_SEARCH_STRING,
-  } from '../actions/controlPanel';
+} from '../actions/controlPanel';
 
 const initState = {
   lang: localStorage.getItem('lang') ? localStorage.getItem('lang') : 'en',
   isCelsius: localStorage.getItem('isCelsius') ? localStorage.getItem('isCelsius') : 'true',
-  searchString: '',// localStorage.getItem('searchString') ? localStorage.getItem('searchString') : '',
-}
+  searchString: '',
+};
 
-export default function(state = initState, action) {
+export default function (state = initState, action) {
   switch (action.type) {
     case CHANGE_LANG: {
       return {
         ...state,
-        lang: action.payload
-      }
+        lang: action.payload,
+      };
     }
     case CHANGE_USE_CELSIUS: {
       return {
         ...state,
-        isCelsius: action.payload
-      }
+        isCelsius: action.payload,
+      };
     }
     case CHANGE_SEARCH_STRING: {
       return {
         ...state,
-        searchString: action.payload
-      }
+        searchString: action.payload,
+      };
     }
     default:
   }

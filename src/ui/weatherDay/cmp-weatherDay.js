@@ -2,6 +2,9 @@ import React from 'react';
 import { translite, celsiusToFaringate, addSero } from '../../utils/service';
 
 export default class WeatherDay extends React.Component {
+  state = {
+    currentDateTime: '',
+  }
 
   getCurrentDateTime() {
     let date = new Date();
