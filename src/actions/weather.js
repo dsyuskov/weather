@@ -1,6 +1,6 @@
 import { getWeatherForecast } from '../actions/forecast';
 import { getWeatherForBackground } from '../actions/backgroundImage';
-import { countrys  } from "../countrys";
+import { countries  } from "../utils/countries";
 export const GET_WEATHER_REQUEST = 'GET_WEATHER_REQUEST';
 export const GET_WEATHER_SUCCESS = 'GET_WEATHER_SUCCESS';
 export const GET_WEATHER_FAILTURE = 'GET_WEATHER_FAILTURE';
@@ -96,7 +96,7 @@ function preapreWeather(item) {
     timezone: item.timezone,
     city: {
       name: item.name,
-      country: countrys[item.sys.country],
+      country: countries[item.sys.country],
       coord:{
         lat: item.coord.lat,
         lon: item.coord.lon,

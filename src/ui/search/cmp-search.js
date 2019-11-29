@@ -1,5 +1,5 @@
 import React from 'react';
-import { translite } from '../../service';
+import { translite } from '../../utils/service';
 
 export default function Search(props){
   return (

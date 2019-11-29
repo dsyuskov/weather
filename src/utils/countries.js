@@ -1,4 +1,4 @@
-export const countrys = {
+export const countries = {
   "BD": "Bangladesh",
   "BE": "Belgium",
   "BF": "Burkina Faso",

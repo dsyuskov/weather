@@ -1,6 +1,6 @@
 import React from 'react';
 import mapboxgl from 'mapbox-gl';
-import { translite } from "../../service";
+import { translite } from "../../utils/service";
 
 mapboxgl.accessToken = 'pk.eyJ1IjoieXVza292c3MiLCJhIjoiY2szNnRoODJuMDR2NTNubWhmZ2tyNHcweiJ9.nqpNmNuvXFtwx0VFoqqxGQ';
 

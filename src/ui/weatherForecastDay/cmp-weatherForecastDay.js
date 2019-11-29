@@ -1,5 +1,5 @@
 import React from 'react';
-import { translite, celsiusToFaringate } from '../../service';
+import { translite, celsiusToFaringate } from '../../utils/service';
 
 export function WeatherForecastDay(props) {
   const { lang, forecast, isCelsius } = props;

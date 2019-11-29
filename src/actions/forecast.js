@@ -1,4 +1,4 @@
-import { addSero } from "../service";
+import { addSero } from "../utils/service";
 
 export const GET_WEATHER_FORECAST_REQUEST  = 'GET_WEATHER_FORECAST_REQUEST';
 export const GET_WEATHER_FORECAST_SUCCESS  = 'GET_WEATHER_FORECAST_SUCCESS';

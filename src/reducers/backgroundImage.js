@@ -1,4 +1,4 @@
-import { getCurrentSeason, getTimesOfDay } from '../service'
+import { getCurrentSeason, getTimesOfDay } from '../utils/service'
 import {
   GET_BACKGROUND_REQUEST,
   GET_BACKGROUND_SUCCESS,
