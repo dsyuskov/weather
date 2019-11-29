@@ -4,8 +4,6 @@ import WeatherDay from '../weatherDay/cmp-weatherDay';
 import { Map} from '../map/map'
 import { ControlPanel } from '../controlPanel/cmp-controlPanel';
 import { WeatherForecastDay } from '../weatherForecastDay/cmp-weatherForecastDay';
-import { getCountryName } from '../../service';
-
 
 class Page extends React.Component {
   constructor(props) {
