@@ -18,8 +18,7 @@ export default function Search(props) {
             props.onClick();
             event.preventDefault();
           }}
-        >
-{ translite(props.lang, 'words', 'search') }
+        >{ translite(props.lang, 'words', 'search') }
         </button>
       </form>
     </div>

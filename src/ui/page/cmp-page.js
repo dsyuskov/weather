@@ -1,9 +1,9 @@
 import React from 'react';
 import Search from '../search/cmp-search';
 import WeatherDay from '../weatherDay/cmp-weatherDay';
+import WeatherForecastDay from '../weatherForecastDay/cmp-weatherForecastDay';
 import { Map} from '../map/map'
 import { ControlPanel } from '../controlPanel/cmp-controlPanel';
-import { WeatherForecastDay } from '../weatherForecastDay/cmp-weatherForecastDay';
 
 class Page extends React.Component {
   constructor(props) {
@@ -16,11 +16,11 @@ class Page extends React.Component {
     this.onUpdateClick = this.onUpdateClick.bind(this);
   }
 
-  onSearchChange = event => {
+  onSearchChange = (event) => {
     this.props.changeSearchString(event.target.value);
   }
 
-  onChangeLang = event => {
+  onChangeLang = (event) => {
     this.props.changeLang(event.target.value);
     localStorage.setItem('lang', event.target.value);
   }
@@ -38,22 +38,13 @@ class Page extends React.Component {
   onClick() {
     const { timesOfDay, season, weatherForBackground, searchString } = this.props;
     this.props.getBackgroundImage(`${timesOfDay}, ${season}, ${weatherForBackground}`);
-
-    this.props.getWeatherByCity(searchString, 'metric');
+    this.props.getWeatherByCity(searchString);
     localStorage.setItem('searchString', searchString); 
   }
 
   onUpdateClick() {
     const { timesOfDay, season, weatherForBackground } = this.props;
     this.props.getBackgroundImage(`${timesOfDay}, ${season}, ${weatherForBackground}`);
-  }
-
-  loadSetting() {
-    if (this.props.isCelsius === 'true') {
-      this.onClickCelsius();
-    } else {
-      this.onClickFaringate();
-    }
   }
 
   componentDidUpdate() {
@@ -66,7 +57,6 @@ class Page extends React.Component {
 
   componentDidMount() {
     const { timesOfDay, season, weatherForBackground, searchString } = this.props;
-    this.loadSetting();
 
     this.props.getBackgroundImage(`${timesOfDay}, ${season}, ${weatherForBackground}`);
 
@@ -76,7 +66,7 @@ class Page extends React.Component {
         this.props.getWeatherByCoord,
       );
     } else {
-      this.props.getWeatherByCity(searchString, 'metric');
+      this.props.getWeatherByCity(searchString);
     }
   }
 
@@ -97,13 +87,13 @@ class Page extends React.Component {
               onClickUpdate = { this.onUpdateClick }
               onClickFaringate = {this.onClickFaringate }
               onClickCelsius = { this.onClickCelsius }
-              onChangeLang= { this.onChangeLang }
+              onChangeLang = { this.onChangeLang }
             />
             <Search 
-              lang={ lang }
-              value={ searchString }
-              onChange= { this.onSearchChange }
-              onClick={ this.onClick }
+              lang = { lang }
+              value = { searchString }
+              onChange = { this.onSearchChange }
+              onClick = { this.onClick }
             />
           </header>
         </div>
@@ -115,46 +105,46 @@ class Page extends React.Component {
         <header className="header">
           <ControlPanel 
             value = { lang }
-            isCelsius={ isCelsius }
-            onClickUpdate= { this.onUpdateClick }
+            isCelsius = { isCelsius }
+            onClickUpdate = { this.onUpdateClick }
             onClickFaringate = {this.onClickFaringate }
             onClickCelsius = { this.onClickCelsius }
-            onChangeLang= { this.onChangeLang }
+            onChangeLang = { this.onChangeLang }
           />
           <Search
-            lang={ lang }
-            value={ searchString }
-            onChange= { this.onSearchChange }
-            onClick={ this.onClick }
+            lang = { lang }
+            value = { searchString }
+            onChange = { this.onSearchChange }
+            onClick = { this.onClick }
           />
         </header>
         <main className="main">
           <div className="weather">
             <WeatherDay
-              lang={ lang }
-              isCelsius={ isCelsius }
-              weather={ weather }
+              lang = { lang }
+              isCelsius = { isCelsius }
+              weather = { weather }
             />
             <div className="weather-forecast">
               {forecast && <WeatherForecastDay
-                lang={ lang }
-                isCelsius={ isCelsius }
-                forecast={ forecast[0] }
+                lang = { lang }
+                isCelsius = { isCelsius }
+                forecast = { forecast[0] }
               />}
               {forecast && <WeatherForecastDay 
-                lang={ lang }
-                isCelsius={ isCelsius }
-                forecast={ forecast[1] }
+                lang = { lang }
+                isCelsius = { isCelsius }
+                forecast = { forecast[1] }
               />}
               {forecast && <WeatherForecastDay 
-                lang={ lang }
-                isCelsius={ isCelsius }
-                forecast={ forecast[2] }
+                lang = { lang }
+                isCelsius = { isCelsius }
+                forecast = { forecast[2] }
               />}
             </div>
           </div>
           <Map
-            lang={ lang }
+            lang = { lang }
             lat = { weather.city.coord.lat }
             lon = { weather.city.coord.lon }
           />

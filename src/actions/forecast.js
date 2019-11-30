@@ -53,8 +53,8 @@ function prepareForecast(items) {
     const dayToStr = `${day.getFullYear()}-${addSero(day.getMonth() + 1)}-${addSero(day.getDate())}`;
     result[i] = {
       weekDay: day.getDay(),
-      // eslint-disable-next-line max-len
-      temp: Math.round(items.list.filter((item) => item.dt_txt.includes(dayToStr)).reduce((sum, item) => sum + item.main.temp, 0) / countDaysOfForecast),
+      temp: Math.round(items.list.filter((item) => item.dt_txt.includes(dayToStr))
+        .reduce((sum, item) => sum + item.main.temp, 0) / countDaysOfForecast),
       icon: items.list.filter((item) => item.dt_txt.includes(`${dayToStr} 12:00:00`))[0].weather[0].icon,
     };
   }
