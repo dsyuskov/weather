@@ -1,5 +1,6 @@
 import React from 'react';
-import { translite, celsiusToFaringate, addSero } from '../../utils/service';
+import { celsiusToFaringate, addSero } from '../../utils/service';
+import translite from '../../utils/translite';
 
 export default class WeatherDay extends React.Component {
   state = {
