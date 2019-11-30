@@ -1,0 +1,42 @@
+@import './variables.scss';
+@import './layot.scss';
+@import './fonts.scss';
+@import './button.scss';
+@import './dropdown.scss';
+@import './search.scss';
+@import './control-panel.scss';
+@import './weather-day.scss';
+@import './weather-forecast.scss';
+@import './map.scss';
+@import './spinner.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  font-size: 16px;
+  background-color: $backgroundColor;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+
+  @media (max-width: $large) {
+    font-size: 14px;
+  }
+  
+  @media (max-width: $medium) {
+    font-size: 12px;
+  }
+
+  @media (max-width: $small) {
+    font-size: 12px;
+  }
+
+  @media screen and (orientation:landscape) {
+    height: 100%;
+  }
+}
