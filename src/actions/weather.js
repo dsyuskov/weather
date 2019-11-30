@@ -34,6 +34,7 @@ export const getWeatherByCity = (city) => (dispatch) => {
   fetch(`${PATH_BASE}${WEATHER}?${API_KEY}&${UNITS}&${PATH_SEARCH}${city}`)
     .then((response) => {
       if (!response.ok) {
+        dispatch(getWeatherRequest(false));
         throw Error(response.statusText);
       }
       dispatch(getWeatherRequest(false));

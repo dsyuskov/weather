@@ -7,7 +7,7 @@ import {
 const initState = {
   weather: '',
   isRequestWeather: false,
-  isError: false,
+  isErrorWeather: false,
 };
 
 export default function (state = initState, action) {
@@ -21,7 +21,7 @@ export default function (state = initState, action) {
     case GET_WEATHER_FAILTURE: {
       return {
         ...state,
-        isError: action.payload,
+        isErrorWeather: action.payload,
       };
     }
     case GET_WEATHER_SUCCESS: {

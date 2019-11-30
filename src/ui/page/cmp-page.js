@@ -71,12 +71,13 @@ class Page extends React.Component {
   }
 
   render() {
-    const { weather,  forecast, lang, isCelsius, searchString, isRequestWeather, isRequestForecast, isRequestBackgroundImage } = this.props;
-
+    const {
+      weather, forecast, lang, isCelsius, searchString,
+      isRequestWeather, isRequestForecast, isRequestBackgroundImage,
+     } = this.props;
     if (isRequestWeather || isRequestForecast || isRequestBackgroundImage) {
       return <div className="async-spinner"></div>
     }
-
     if (!weather.city) {
       return (
         <div className="wrapper">
