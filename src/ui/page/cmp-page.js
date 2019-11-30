@@ -48,11 +48,7 @@ class Page extends React.Component {
   }
 
   componentDidUpdate() {
-    document.body.style.background = `url("${this.props.backgroundImage}")`;
-    document.body.style.backgroundSize = 'cover';
-    document.body.style.backgroundRepeat = 'no-repeat';
-    document.body.style.backgroundPosition = 'center center';
-    document.body.style.backgroundAttachment = 'fixed';
+    document.body.style.backgroundImage = `url("${this.props.backgroundImage}")`;
   }
 
   componentDidMount() {
