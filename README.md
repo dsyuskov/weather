@@ -1,4 +1,4 @@
-# fancy-weather
+# Weather
 
 Application - weather forecast on the basis of React + Redux
 
